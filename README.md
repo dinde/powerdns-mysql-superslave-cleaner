@@ -14,3 +14,5 @@ You can crontab this file, there is a backup system embedded.
 
 You can modify one function to get it working on any backend.
 Feel free to request pull.
+
+  This script has been sponsored by Open Web Network Solutions - http://www.owns.fr
