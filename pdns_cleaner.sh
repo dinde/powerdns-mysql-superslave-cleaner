@@ -12,8 +12,8 @@
 ## Also don't use one of the other dns declared for your domains.
 ## Set an external DNS to use this script (ie 8.8.8.8).
 # Author: David <david@ows.fr> - http://www.ows.fr
-# Date: 27/11/2013: Patched against new bind-utils options, Added the possibility to have many ranges superslaved
-# Version: 1.1
+# Date: 01/12/2013: Added an exclusion of comments on configuration parsing
+# Version: 1.2
 # Licence: WTFPLv2 (More informations on footer)
 
 ## Config ##
@@ -47,7 +47,7 @@ Please check it out."
 ## Functions ##
 # Get mysql conf from /etc/powerdns/pdns.conf (or other files) and put it on variables
 get_mysql_config () {
-        if [ $(grep 'gmysql-user' ${PDNS_CONFIG}) = '' ] ; then
+        if [ $(grep 'gmysql-user' ${PDNS_CONFIG} | grep -v '#') = '' ] ; then
 	       	PDNS_CONFIG=${PDNS_CONFIG2}
         fi
         SQL_USR=$(grep 'gmysql-user' ${PDNS_CONFIG} | cut -f'2' -d'=' | tr -s ' ')
@@ -58,7 +58,7 @@ get_mysql_config () {
 ## Tests if config is done with this script & if powerdns is realy configured with mysql backend
 # Test if we're under mysql backend
 validate_backend () {
-        if [ $(grep 'launch=gmysql' ${PDNS_CONFIG}) = '' ] ; then
+        if [ $(grep 'launch=gmysql' ${PDNS_CONFIG} | grep -v '#') = '' ] ; then
                 echo "Your PowerDNS superslave server isn't configured with a Mysql backend."
                 echo "This script is only made to work on Mysql Backend."
                 logger "[pdns_cleaner] Attempt to run cleaner on another backend than Mysql ! Exiting ..."
