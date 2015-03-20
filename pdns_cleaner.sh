@@ -11,7 +11,7 @@
 ## With nameserver 127.0.0.1 (localhost). It just won't work.
 ## Also don't use one of the other dns declared for your domains.
 ## Set an external DNS to use this script (ie 8.8.8.8).
-# Author: David <david@ows.fr> - http://www.ows.fr
+# Author: David <kayser@euroserv.com>
 # Date: 01/12/2013: Added an exclusion of comments on configuration parsing
 # Version: 1.2
 # Licence: WTFPLv2 (More informations on footer)
